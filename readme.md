@@ -20,5 +20,5 @@ It has the following nuget dependencies:
 - PCL version
 - publish to nuget
 - implement full api, not only creating and resolving incidents
-- get exisint incidents and add new problems as logs to those instead of opening new incidents
+- get exising open incidents and add new problems of the same type as logs to those instead of opening new incidents
 - async http calls
