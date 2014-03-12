@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagerDutyApi", "PagerDutyApi\PagerDutyApi.csproj", "{9A2E49B1-DAE0-47E1-9048-9738DD059B7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests.PagerDutyApiTests", "UnitTests.OagerDutyApi\UnitTests.PagerDutyApiTests.csproj", "{41396BA5-3A01-4225-B741-93A9C49DD91C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests.PagerDutyApiTests", "UnitTests.PagerDutyApi\UnitTests.PagerDutyApiTests.csproj", "{41396BA5-3A01-4225-B741-93A9C49DD91C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
