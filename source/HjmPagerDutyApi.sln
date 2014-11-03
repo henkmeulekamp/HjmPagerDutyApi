@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagerDutyApi", "PagerDutyApi\PagerDutyApi.csproj", "{9A2E49B1-DAE0-47E1-9048-9738DD059B7E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests.PagerDutyApiTests", "UnitTests.PagerDutyApi\UnitTests.PagerDutyApiTests.csproj", "{41396BA5-3A01-4225-B741-93A9C49DD91C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdIncidents", "PdIncidents\PdIncidents.csproj", "{BD2246B9-34BB-4705-B4B9-F1431A804925}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +23,10 @@ Global
 		{41396BA5-3A01-4225-B741-93A9C49DD91C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41396BA5-3A01-4225-B741-93A9C49DD91C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41396BA5-3A01-4225-B741-93A9C49DD91C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD2246B9-34BB-4705-B4B9-F1431A804925}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD2246B9-34BB-4705-B4B9-F1431A804925}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD2246B9-34BB-4705-B4B9-F1431A804925}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD2246B9-34BB-4705-B4B9-F1431A804925}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

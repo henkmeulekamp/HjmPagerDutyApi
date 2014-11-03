@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using NUnit.Framework;
 using PagerDutyApi;
 using PagerDutyApi.Config;
@@ -95,6 +96,80 @@ namespace UnitTests.OagerDutyApi
             var resResponse = apiClient.Resolve(resolveEvent);
             
             Assert.IsTrue(resResponse.IsOk(), "Incident should be resolved");            
+        }
+
+
+        [Test]
+        public void GetOpenIndicidents()
+        {            
+            var api = new IntegrationApi(GetPagerDutyConfig());
+
+            var incidents = api.GetOpenIncidents();
+            Assert.IsNotNull(incidents);
+        }
+
+        [Test]
+        public void RaiseIfNotKnown()
+        {
+            var config = GetPagerDutyConfig();
+            var subject = "[IPHost] 'Parkmobile NL Web02 on web02-nl.parkmobile.com' - 'down'";
+            var api = new IntegrationApi(config);
+
+            var incidents = api.GetOpenIncidents();
+
+            var incident = incidents.FirstOrDefault(i => i.trigger_summary_data != null
+                           && i.trigger_summary_data.IndexOf("IPHOST", StringComparison.OrdinalIgnoreCase) >= 0 );
+
+            if (incident == null)
+            {
+                //raise new
+                var newIncident = new IncidentEvent
+                {
+                    client = "IPHost",
+                    description = subject,
+                    incident_key = Guid.NewGuid().ToString(),
+                    service_key = config.EventAuthToken,
+                };
+
+                var response = api.Trigger(newIncident);
+
+                Assert.IsTrue(response.IsOk(), "Incident should be created");
+            }
+            else
+            {
+                //already known, keep on going
+            }
+        }
+
+
+        [Test]
+        public void CloseIfStillOpen()
+        {
+            var config = GetPagerDutyConfig();
+            var subject = "[IPHost] 'Parkmobile NL Web02 on web02-nl.parkmobile.com' - 'ok'";
+            var api = new IntegrationApi(config);
+
+            var incidents = api.GetOpenIncidents();
+
+            var incident = incidents.FirstOrDefault(i => i.trigger_summary_data != null
+                           && i.trigger_summary_data.IndexOf("IPHOST", StringComparison.OrdinalIgnoreCase) >= 0);
+
+            if (incident != null)
+            {
+                var resolveEvent = new ResolveEvent(new IncidentEvent
+                {
+                    incident_key = incident.incident_key                    
+                }, subject);
+
+                var resResponse = api.Resolve(resolveEvent);
+
+                Assert.IsTrue(resResponse.IsOk(), "Incident should be resolved");        
+
+            }
+            else
+            {
+                //none open
+            }
         }
 
         private static PagerDutyConfig GetPagerDutyConfig()

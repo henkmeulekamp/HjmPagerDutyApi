@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using PagerDutyApi.Config;
 using PagerDutyApi.Helpers;
 using PagerDutyApi.Model;
-using ServiceStack;
+using ServiceStack.Text;
 
 namespace PagerDutyApi
 {
@@ -32,8 +34,6 @@ namespace PagerDutyApi
         {
             return PostIncident(incident);
         }
-
-
 
         private EventResponse PostIncident<T>(T incident)
         {
@@ -65,5 +65,28 @@ namespace PagerDutyApi
             }
         }
 
+        public List<Incident> GetOpenIncidents()
+        {
+
+            try
+            {
+                //open and acknowledged incidents
+               // var request = new IncidentFilter { status = "triggered,acknowledged" }};
+                var url = _config.ApiUrl + "?status=triggered,acknowledged";
+
+                var incidents = HttpHelper.SendJsonToUrl<Incidents>(url, "GET", null,
+                    new Dictionary<string, string> { { "Authorization", "Token token="  + _config.AuthToken } });
+
+                
+                if (incidents == null || !incidents.incidents.Any())
+                    return new List<Incident>(0);
+
+                return incidents.incidents.ToList();
+            }
+            catch (Exception e)
+            {
+                return new List<Incident>(0);
+            }
+        }
     }
 }

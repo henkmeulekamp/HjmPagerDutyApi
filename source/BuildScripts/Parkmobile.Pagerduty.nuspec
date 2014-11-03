@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <version>1.0.0.0</version>
+    <authors>Parkmobile Development</authors>
+    <owners>Parkmobile Group BV, hjmeulekamp</owners>    
+    <id>Parkmobile.Pagerduty</id>
+    <title>Parkmobile.Pagerduty</title>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>ParkMobile Pagerduty integration</description>
+    <releaseNotes>	
+	2014-03-25; First release
+	</releaseNotes>
+	<copyright>Copyright 2014</copyright>
+    <tags>parkmobile phonixx pagerduty integration</tags>
+	<dependencies>
+		<dependency id="ServiceStack.Text" version="[3,4)"  />    
+    </dependencies>
+  </metadata>
+  <files>  
+    <file src="..\PagerDutyApi\bin\Release\PagerDutyApi.dll" target="lib\NET45\PagerDutyApi.dll" />
+  </files>
+</package>

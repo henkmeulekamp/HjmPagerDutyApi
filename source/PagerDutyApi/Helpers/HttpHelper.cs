@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Mime;
 using System.Text;
 using System.Web;
 using ServiceStack.Text;
@@ -145,20 +144,22 @@ namespace PagerDutyApi.Helpers
             if (acceptContentType != null)
                 webReq.Accept = acceptContentType;
 
-            try
+            if (postData != null)
             {
-                
-                using (var writer = new StreamWriter(webReq.GetRequestStream()))
+                try
                 {
-                    JsonSerializer.SerializeToWriter(postData, writer);   
+
+                    using (var writer = new StreamWriter(webReq.GetRequestStream()))
+                    {
+                        JsonSerializer.SerializeToWriter(postData, writer);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Trace.WriteLine("Error sending Request: " + ex);
+                    throw;
                 }
             }
-            catch (Exception ex)
-            {
-                Trace.WriteLine("Error sending Request: " + ex);
-                throw;
-            }
-
             using (var webRes = webReq.GetResponse())
             {
                 var r = webRes.DownloadText();
