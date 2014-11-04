@@ -9,7 +9,7 @@ There is a project already on nuget, but that one has a dependency on json.net a
 ## New Cli interface ##
 
 For integration with a monitoring tool with limited options to call external APIs I added a CLI tool. With this you can resolve, acknowledge and open incidents using command line. See PdIncidents project. Commandline options:  
- - c: config, config gile
+ - c: config, config file
  - s: subject, subject of incident
  - m: message, message/details of incident
  - a: action, Raise, Acknowledge, Resolve
