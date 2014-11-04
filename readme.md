@@ -14,10 +14,10 @@ For integration with a monitoring tool with limited options to call external API
  - m: message, message/details of incident
  - a: action, Raise, Acknowledge, Resolve
 
-Example:
+Example:  
 `PdIncidents.exe -c c:\config\pagerduty.config -a Raise -s "New IP Monitoring Incident" -m "company.com down" `
 
-Then to resolve it:
+Then to resolve it:  
 `PdIncidents.exe -c c:\config\pagerduty.config -a Resolve -s "New IP Monitoring Incident"`
 
 
